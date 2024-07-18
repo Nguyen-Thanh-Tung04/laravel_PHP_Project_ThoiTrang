@@ -24,4 +24,31 @@ class HomeController extends Controller
         $Product = Product::query()->where('slug',$id)->first();
         return view('product_detail', compact('Category','Product'));
     }
+    public function shop()
+    {
+        $Category = Category::query()->get();
+        $Product = Product::query()->get();
+        return view('shop', compact('Category','Product'));
+    }
+    // public function shopByCategory($iddm)
+    // {
+    //     $category = Category::all(); // Find category by slug
+    
+    //     $products = Product::where('category_id', $iddm)->get(); // Filter products
+    
+    //     // Pass the category as a separate variable
+    //     return view('shop', compact('Category', 'products'));
+    // }
+    public function shopByCategory($iddm)
+    {
+        $Category = Category::query()->get();
+
+        $selectedCategory = Category::findOrFail($iddm); // Tìm danh mục theo ID
+
+        $Product = Product::where('category_id', $selectedCategory->id)->get();
+
+        return view('shop', compact('Category', 'Product','selectedCategory'));
+    }
+    
+
 }

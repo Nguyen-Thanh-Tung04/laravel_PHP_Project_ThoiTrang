@@ -90,20 +90,23 @@
                             <ul>
                                 <li><a href="{{route('home')}}">Trang chủ</a></li>                                <li><a href="index.php?act=about">Giới thiệu</a></li>
                                 <li class="nav-item dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="index.php?act=sanpham"
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{route('shop')}}"
                                         role="button" aria-haspopup="true" aria-expanded="false">
                                         Cửa Hàng
                                     </a>
                                     <ul>
                                         <li class="dropdown-submenu">
                                             <ul class="dropdown-menu sub-menu">
-                                              <li>Áo</li>
-                                              <li>Quần</li>
+                                                @foreach ($Category as $dm)
+                                                <li><a href="">{{$dm->name}}</a></li>
+                                                @endforeach
 
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
+                              
+
                                 <li><a href=" index.php?act=contact">Liên hệ</a></li>
                             </ul>
                         </div>

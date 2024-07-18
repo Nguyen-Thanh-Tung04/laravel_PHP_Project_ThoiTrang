@@ -20,3 +20,5 @@ Route::get('/', function () {
 });
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/product_detail/{id}', [HomeController::class, 'detail'])->name('product_detail');
+Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+Route::get('/shop/category/{iddm}', [HomeController::class, 'shopByCategory'])->name('shop.category');
