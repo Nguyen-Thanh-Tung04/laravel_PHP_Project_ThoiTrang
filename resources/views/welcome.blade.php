@@ -34,19 +34,17 @@
 
 <!-- Shop Category pages -->
 
-<div class="section pt-100px">
+<div class="section pt-4" style="height:300px">
     <div class="col-md-12 text-center" data-aos="fade-up">
         <div class="section-title mb-0">
             <h2 class="title">Danh mục</h2>
         </div>
     </div>
     <div class="container">
-        
         <div class="category-slider swiper-container" data-aos="fade-up">
             <div class="category-wrapper swiper-wrapper">
                 <!-- Single Category -->
                 @foreach ($Category as $dm)
-
                 <div class=" swiper-slide">
                     <a href="shop-left-sidebar.html" class="category-inner ">
                         <div class="category-single-item">
@@ -56,7 +54,6 @@
                     </a>
                 </div>    
                 @endforeach
-           
             </div>
         </div>
     </div>
@@ -102,7 +99,7 @@
                                 <!-- Single Prodect -->
                                 <div class="product">
                                     <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
+                                        <a href="{{route('product_detail',$sp->slug)}}" class="image">
                                             <img src="{{Storage::url($sp->img_thumb)}}" alt="Product" />
                                             <img class="hover-image" src="{{Storage::url($sp->img_thumb)}}" alt="Product" />
                                         </a>

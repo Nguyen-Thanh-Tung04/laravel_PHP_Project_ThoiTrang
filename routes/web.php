@@ -19,3 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/product_detail/{id}', [HomeController::class, 'detail'])->name('product_detail');

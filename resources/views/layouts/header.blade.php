@@ -68,7 +68,7 @@
     <!-- Header Area start  -->
     <div class="header section">
         <!-- Header Bottom  Start -->
-        <div class=" align-self-center m-2" >
+        <div class=" align-self-center  m-2" >
             <marquee behavior="scroll" class="fw-bold" direction="left">🚛Nguyễn Thanh Tùng đẹp zai phải không mọi người!</marquee>
         </div>
         <!-- Header Bottom  End -->
@@ -88,8 +88,7 @@
                     <div class="col-md-6 align-self-center">
                         <div class="main-menu text-white">
                             <ul>
-                                <li><a href="index.php">Trang chủ</a></li>
-                                <li><a href="index.php?act=about">Giới thiệu</a></li>
+                                <li><a href="{{route('home')}}">Trang chủ</a></li>                                <li><a href="index.php?act=about">Giới thiệu</a></li>
                                 <li class="nav-item dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="index.php?act=sanpham"
                                         role="button" aria-haspopup="true" aria-expanded="false">
@@ -114,12 +113,12 @@
                             <div class="header-actions">
                                 <div class="header_account_list">
                                     <a href="javascript:void(0)" class="header-action-btn search-btn"><i
-                                            class="icon-magnifier"></i></a>
+                                            class="icon-magnifier" style="color:rgb(211, 163, 19)"></i></a>
                                     <div class="dropdown_search">
                                         <form class="action-form" action="index.php?act=sanpham" method="POST">
                                             <input class="form-control" placeholder="Nhập sản phẩm bạn muốn tìm" type="text"
                                                 name="kyw">
-                                            <button class="submit" type="submit"><i class="icon-magnifier" style="background-color: brown;"></i></button>
+                                            <button class="submit" type="submit"><i class="icon-magnifier" ></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -128,7 +127,7 @@
                                 <div class="header-bottom-set dropdown">
                                     <button class="dropdown-toggle hcol-md-12 align-self-centereader-action-btn" data-bs-toggle="dropdown">
     
-                                        <i class="icon-user"></i>
+                                        <i class="icon-user" style="color:rgb(211, 163, 19);"></i>
     
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right">
@@ -144,12 +143,12 @@
     
     
                                 <a href="" class="header-action-btn header-action-btn-cart pr-0">
-                                    <i class="icon-handbag"></i>
+                                    <i class="icon-handbag" style="color:rgb(211, 163, 19)"></i>
                                     <span class="header-action-num">0</span>
                                     <!-- <span class="cart-amount">€30.00</span> -->
                                 </a>
                                 <a href="index.php?act=viewcart" class="header-action-btn header-action-btn-menu d-lg-none">
-                                    <i class="icon-menu"></i>
+                                    <i class="icon-menu" style="color:rgb(211, 163, 19)"></i>
                                 </a>
                             </div>
                         </div>

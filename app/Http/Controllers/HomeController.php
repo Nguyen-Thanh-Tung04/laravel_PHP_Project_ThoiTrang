@@ -18,4 +18,10 @@ class HomeController extends Controller
         $Product = Product::query()->get();
         return view('welcome', compact('Category','Product'));
     }
+    public function detail(string $id)
+    {
+        $Category = Product::query()->get();
+        $Product = Product::query()->where('slug',$id)->first();
+        return view('product_detail', compact('Category','Product'));
+    }
 }
