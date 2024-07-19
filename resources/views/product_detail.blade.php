@@ -80,7 +80,7 @@
                         </ul>
                     </div>
                     <p class="quickview-para"></p>
-                    <form id="AddToCartForm" action="index.php?act=addtocart" method="post">
+                    <form id="AddToCartForm" action="{{ route('client.cart')}}" method="post">
                         <div class="pro-details-size-color d-flex">
                             <div class="pro-details-color-wrap mx-3">
                                 <span>Màu</span>
@@ -110,7 +110,7 @@
                                 <div class="addtocart-wrapper">
                                     <button class="btn btn-primary btn-hover-primary ml-4 mx-3" name="addtocart"
                                         type="submit">Mua ngay</button>
-                                    <button id="addToCartButton" name="themcart"><i class="icon-handbag"></i>Thêm
+                                    <button id="addToCartButton" name="themcart" data-id="{{$Product->id}}"  onclick="addToCart(event, {{$Product->id}}, '{{$Product->name}}', {{$Product->price}}, '{{ $Product->img_thumb }}')"><i class="icon-handbag"></i>Thêm
                                         vào
                                         giỏ
                                         hàng</button>

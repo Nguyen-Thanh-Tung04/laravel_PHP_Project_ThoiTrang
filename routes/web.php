@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\client\CartController;
+
 
 
 /*
@@ -22,3 +24,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/product_detail/{id}', [HomeController::class, 'detail'])->name('product_detail');
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 Route::get('/shop/category/{iddm}', [HomeController::class, 'shopByCategory'])->name('shop.category');
+
+Route::get('/cart', [CartController::class, 'index'])->name('client.cart');
+Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
