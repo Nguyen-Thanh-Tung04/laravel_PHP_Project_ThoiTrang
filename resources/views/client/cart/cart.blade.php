@@ -27,6 +27,8 @@
 <!-- breadcrumb-area end -->
 
 <!-- Cart Area Start -->
+@if (isset($cart) && count($cart) > 0)
+    
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
         <h3 class="cart-page-title">Giỏ hàng của bạn</h3>
@@ -64,20 +66,26 @@
                                 </td>
                                 <td class="product-name"><a
                                         href="">{{ $item['name'] }}</a></td>
-                                <td class="product-price-cart">{{ $item['price'] }}<span
+                                <td class="product-price-cart" data-price="{{ $item['price'] }}">{{ $item['price'] }}<span
                                         class="amount"></span></td>
-                                <td class="color"></td>
+                                <td class="color">{{ $item['id'] }}</td>
                                 <td class="size"></td>
                                 <td class="product-quantity">
                                     <div class="cart-plus-minus">
+                                        {{-- <div class="dec qtybutton">-</div> --}}
                                         <input class="cart-plus-minus-box quantity-change" required type="text" maxlength="1"
-                                            onblur="validateInput(this);" name="qtybutton" value="1" />
+                                        onblur="validateInput(this);" name="qtybutton" value="{{ $item['quantity'] }}" data-id="{{ $item['id'] }}" />
                                     </div>
                                 </td>
-                                <td class="product-subtotal">{{ $item['price'] }}</td>
+                                <td class="product-subtotal" >{{ $item['total'] }}</td>
                                 <td class="product-remove">
-                                    <a href="" onclick="showConfirmationDialog(this.href, event)"><i
-                                            class="icon-close"></i></a>
+                                    <form action="{{ route('cart.removeCartItem') }}" method="POST" class="removeCartItemForm">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item['id'] }}">
+                                        <button type="button" onclick="showConfirmationDialog(event, this)">
+                                            <i class="icon-close"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -116,5 +124,26 @@
         </div>
     </div>
 </div>
+@else
+<div class="empty-cart-area pb-100px pt-100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cart-heading">
+                    <h2>Giỏ hàng của bạn </h2>
+                </div>
+                <div class="empty-text-contant text-center">
+                    <i class="icon-handbag"></i>
+                    <h1>Không còn mặt hàng nào trong giỏ hàng của bạn</h1>
+                    <a class="empty-cart-btn" href="index.php">
+                        <i class="ion-ios-arrow-left"> </i> Tiếp tục mua sắm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+
 <!-- Cart Area End -->
 @endsection

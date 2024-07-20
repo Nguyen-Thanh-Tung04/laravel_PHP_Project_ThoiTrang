@@ -17,8 +17,7 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        $quantity = 0;
-
+        $quantity = 1;
         // Thực hiện logic thêm vào giỏ hàng
 
         // Ví dụ: Trả về số lượng sản phẩm trong giỏ hàng
@@ -30,16 +29,19 @@ class CartController extends Controller
         $name = $request->input('name');
         $price = $request->input('price');
         $img = $request->input('img');
+        $total=$price*$quantity;
 
         if (isset($cart[$id])) {
             $cart[$id]['quantity'] += $quantity;
             $cart[$id]['img'] = $img; // Thêm trường 'img' vào mảng $cart[$id]
         } else {
             $cart[$id] = [
+                'id' => $id,
                 'name' => $name,
                 'price' => $price,
-                'quantity' => $quantity,
-                'img' => $img
+                'quantity' => 1,
+                'img' => $img,
+                'total' => $total
             ];
         }
 
@@ -51,5 +53,43 @@ class CartController extends Controller
             'cartItemCount' => $cartItemCount,
             'message' => 'Bạn đã thêm sản phẩm vào giỏ hàng thành công!'
         ]);
+    }
+    public function updateQuantity(Request $request)
+{
+    $id = $request->input('id');
+    $quantity = $request->input('quantity');
+    $price_total = $request->input('total');
+    // $cart[$id]['total']=0;
+    $cart = session('cart', []);
+
+    if (isset($cart[$id])) {
+        // Cập nhật số lượng mới và giá mới
+        $cart[$id]['quantity'] = $quantity;
+        $cart[$id]['total'] = $price_total;
+
+        session()->put('cart', $cart);
+
+        return response()->json(['message' => 'Số lượng đã được cập nhật', 'cart' => $cart], 200);
+    } else {
+        return response()->json(['message' => 'Lỗi: Sản phẩm không tồn tại trong giỏ hàng'], 400);
+    }
+}
+    public function removeCartItem(Request $request)
+    {
+        // Lấy thông tin sản phẩm cần xóa từ yêu cầu
+        $id = $request->input('id');
+
+        // Xử lý xóa sản phẩm khỏi giỏ hàng (session) của bạn ở đây
+        $cart = session('cart', []);
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+
+            // Chuyển hướng người dùng trở lại trang giỏ hàng
+            return redirect()->route('client.cart')->with('message', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
+        } else {
+            return redirect()->route('client.cart')->with('error', 'Lỗi: Sản phẩm không tồn tại trong giỏ hàng.');
+        }
     }
 }

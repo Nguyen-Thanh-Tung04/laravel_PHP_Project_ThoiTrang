@@ -286,13 +286,90 @@
         },
         success: function (response) {
           totalProduct.innerText = response.cartItemCount;
-          alert('Bạn đã thêm sản phẩm vào giỏ hàng thành công!');
-        },
+          $('.header-action-num').text(response.cartItemCount);
+                  Swal.fire({
+                            title: 'Thông báo',
+                            text: 'Đã thêm vào giỏ hàng',
+                            icon: 'success',
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            showCloseButton: true,
+                        });        },
         error: function (error) {
           console.log(error);
         }
       });
     }
+    $(document).ready(function() {
+    $('.dec').on('click', function() {
+        changeQuantity($(this));
+    });
+
+    $('.inc').on('click', function() {
+        changeQuantity($(this));
+    });
+
+    $('.quantity-change').on('input', function() {
+        changeQuantity($(this));
+    });
+
+    const changeQuantity = function(element) {
+        const row = element.closest('tr');
+        const newValue = row.find('.quantity-change').val();
+        const productId = row.find('.quantity-change').attr('data-id');
+        const priceElement = row.find('.product-price-cart'); // Lấy phần tử .product-price-cart trong hàng sản phẩm
+        const price = parseFloat(priceElement.attr('data-price')); // Lấy giá trị price từ thuộc tính data-price của phần tử
+        const subtotal = price * newValue;
+
+        $.ajax({
+    url: '{{ route("cart.updateQuantity") }}',
+    type: 'POST',
+    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+    data: {
+        id: productId,
+        quantity: newValue,
+        total: subtotal
+    },
+    success: function(response) {
+        // Kiểm tra phản hồi từ máy chủ
+        if (response.message === 'Số lượng đã được cập nhật') {
+            // Cập nhật giá mới
+            row.find('.product-subtotal').attr('data-price', subtotal); // Cập nhật giá mới vào thuộc tính data-price
+            row.find('.product-subtotal').text(subtotal); // Cập nhật giá mới trong nội dung của phần tử
+            // Cập nhật các phần tử khác cần thiết, ví dụ: tổng giá, tổng số lượng, ...
+        } else {
+            // Xử lý lỗi nếu có
+            console.log(response.message);
+        }
+    },
+    error: function(error) {
+        console.log(error);
+    }
+});
+    };
+});
+function showConfirmationDialog(event, button) {
+    event.preventDefault(); // Ngăn chặn điều hướng mặc định của thẻ a
+
+    const form = button.closest('.removeCartItemForm');
+    const id = form.querySelector('input[name="id"]').value;
+    
+    
+    Swal.fire({
+        title: 'Xác nhận',
+        text: 'Bạn có chắc chắn muốn xóa?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Có',
+        cancelButtonText: 'Không'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit(); // Gửi yêu cầu POST
+        }
+    });
+}
   </script>
 </body>
 
