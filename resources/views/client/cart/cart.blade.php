@@ -68,8 +68,22 @@
                                         href="">{{ $item['name'] }}</a></td>
                                 <td class="product-price-cart" data-price="{{ $item['price'] }}">{{ $item['price'] }}<span
                                         class="amount"></span></td>
-                                <td class="color">{{ $item['id'] }}</td>
-                                <td class="size"></td>
+                                <td class="color">
+                                    {{-- <select class="form-control" id="selectedColor" name="color_name" onchange="setSelectedColor(this)" required> --}}
+                                        {{-- @foreach ($variants as $c) --}}
+                                        <option value="">{{ $item['color'] }}</option>
+                                        {{-- @endforeach --}}
+                                    {{-- </select> --}}
+                                </select>
+                                </td>
+                                <td class="size">
+                                    {{-- <select class="form-control" id="selectedSize" name="size_name" onchange="setSelectedSize(this)" required> --}}
+                                        {{-- @foreach ($variants as $s) --}}
+                                        <option value="">{{ $item['size'] }}</option>
+                                        {{-- @endforeach --}}
+                                    {{-- </select> --}}
+
+                                </td>
                                 <td class="product-quantity">
                                     <div class="cart-plus-minus">
                                         {{-- <div class="dec qtybutton">-</div> --}}
@@ -101,16 +115,19 @@
                                 <div class="cart-shiping-update">
                                     <a href="index.php">Tiếp tục mua sắm</a>
                                 </div>
-                                <div class="cart-shiping-update">
-                                    <a href="index.php?act=xoahet_cart"
-                                        onclick="showConfirmationDialog(this.href, event)">Xóa giỏ hàng</a>
+                                
+                                <div >
+                                    <form action="{{ route('cart.removeCartOver') }}" method="POST" cart-clear>
+                                        @csrf
+                                        <button class="cart-clear" type="submit">Xóa giỏ hàng</button>
+                                    </form>
                                 </div>
                             </div>
 
                             <div class="col-lg-12 d-flex justify-content-lg-end">
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="cart-clear">
-                                        <a href="index.php?act=thanhtoan">Tiến hành thanh toán</a>
+                                        <a href="{{route('client.order')}}">Tiến hành thanh toán</a>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +152,7 @@
                 <div class="empty-text-contant text-center">
                     <i class="icon-handbag"></i>
                     <h1>Không còn mặt hàng nào trong giỏ hàng của bạn</h1>
-                    <a class="empty-cart-btn" href="index.php">
+                    <a class="empty-cart-btn" href="{{route('home')}}">
                         <i class="ion-ios-arrow-left"> </i> Tiếp tục mua sắm
                     </a>
                 </div>

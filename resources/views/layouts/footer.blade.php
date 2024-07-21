@@ -271,9 +271,21 @@
 <script>
     let totalProduct = document.getElementById('totalProduct');
   
+    function setSelectedColor(select) {
+    var selectedColor = select.value;
+    document.getElementById('selectedColor').value = selectedColor;
+    }
+
+    function setSelectedSize(select) {
+    var selectedSize = select.value;
+    document.getElementById('selectedSize').value = selectedSize;
+    }
+    
     function addToCart(event, productId, productName, productPrice, productImage) {
       event.preventDefault(); // Prevent default form submission behavior
-  
+      var color = document.getElementById('selectedColor').value;
+      var size = document.getElementById('selectedSize').value;
+
       $.ajax({
         type: 'POST',
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -282,7 +294,9 @@
           id: productId,
           name: productName,
           price: productPrice,
-          img: productImage
+          img: productImage,
+          color: color,
+          size: size
         },
         success: function (response) {
           totalProduct.innerText = response.cartItemCount;

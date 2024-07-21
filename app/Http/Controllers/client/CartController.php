@@ -28,6 +28,9 @@ class CartController extends Controller
         $id = $request->input('id');
         $name = $request->input('name');
         $price = $request->input('price');
+        $color = $request->input('color');
+        $size = $request->input('size');
+
         $img = $request->input('img');
         $total=$price*$quantity;
 
@@ -41,7 +44,10 @@ class CartController extends Controller
                 'price' => $price,
                 'quantity' => 1,
                 'img' => $img,
-                'total' => $total
+                'total' => $total,
+                'color' => $color,
+                'size' => $size
+
             ];
         }
 
@@ -91,5 +97,23 @@ class CartController extends Controller
         } else {
             return redirect()->route('client.cart')->with('error', 'Lỗi: Sản phẩm không tồn tại trong giỏ hàng.');
         }
+    }
+    public function removeCartOver()
+    {
+        session()->forget('cart');
+        $Category = Category::query()->get();
+        return view('client.cart.cart', compact('Category'));
+    }
+    public function order()
+    {
+        $cart = session('cart', []);
+        $Category = Category::query()->get();
+        return view('client.cart.order', compact('Category', 'cart'));
+    }
+    public function bill()
+    {
+        $cart = session('cart', []);
+        $Category = Category::query()->get();
+        return view('client.cart.bill', compact('Category', 'cart'));
     }
 }

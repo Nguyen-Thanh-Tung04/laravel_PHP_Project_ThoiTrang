@@ -132,7 +132,7 @@
                                 </div>
                                 <!-- Single Wedge End -->
     
-    
+
                                 <a href="{{route('client.cart')}}" class="header-action-btn header-action-btn-cart pr-0">
                                     <i class="icon-handbag" style="color:rgb(211, 163, 19)"></i>
                                     <span id="totalProduct" class="header-action-num"><?= count(session('cart', [])) ?></span>                                    {{-- <span class="header-action-num">0</span> --}}
