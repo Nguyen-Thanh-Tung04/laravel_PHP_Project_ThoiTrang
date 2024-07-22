@@ -14,12 +14,20 @@ class HomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $term = $request->input('search');
+        $SpSearch = Product::search($term)->get();
         $Category = Category::query()->get();
         $Product = Product::query()->get();
-        return view('welcome', compact('Category', 'Product'));
+
+        if ($term) {
+            return view('shop', compact('Category', 'SpSearch'));
+        } else {
+            return view('welcome', compact('Category', 'Product'));
+        }
     }
+
     public function detail(string $id)
     {
         $Category = Product::query()->get();
@@ -31,7 +39,7 @@ class HomeController extends Controller
             ->join('product_sizes', 'product_variants.product_size_id', '=', 'product_sizes.id')
             ->select('product_variants.*', 'product_colors.name as color', 'product_sizes.name as size')
             ->get();
-        return view('product_detail', compact('Category','Product','variants'));
+        return view('product_detail', compact('Category', 'Product', 'variants'));
     }
     public function shop()
     {

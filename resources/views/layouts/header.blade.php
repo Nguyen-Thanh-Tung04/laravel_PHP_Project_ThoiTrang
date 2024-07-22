@@ -106,9 +106,9 @@
                                     <a href="javascript:void(0)" class="header-action-btn search-btn"><i
                                             class="icon-magnifier" style="color:rgb(211, 163, 19)"></i></a>
                                     <div class="dropdown_search">
-                                        <form class="action-form" action="index.php?act=sanpham" method="POST">
+                                        <form class="action-form" action="{{route('home')}}" method="GET">
                                             <input class="form-control" placeholder="Nhập sản phẩm bạn muốn tìm" type="text"
-                                                name="kyw">
+                                                name="search" value="{{request('search')}}">
                                             <button class="submit" type="submit"><i class="icon-magnifier" ></i></button>
                                         </form>
                                     </div>
