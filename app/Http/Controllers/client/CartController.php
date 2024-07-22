@@ -14,29 +14,29 @@ class CartController extends Controller
         $Category = Category::query()->get();
         return view('client.cart.cart', compact('Category', 'cart'));
     }
-
-    public function addToCart(Request $request)
+    public function buyNow(Request $request)
     {
+        $Category = Category::query()->get();
+
         $quantity = 1;
-        // Thực hiện logic thêm vào giỏ hàng
-
-        // Ví dụ: Trả về số lượng sản phẩm trong giỏ hàng
+    
+        // Example: Return the number of items in the cart
         $cartItemCount = 10;
-
+    
         $cart = session()->get('cart', []);
-
+    
         $id = $request->input('id');
         $name = $request->input('name');
         $price = $request->input('price');
-        $color = $request->input('color');
-        $size = $request->input('size');
-
+        $colors = $request->input('color_name');
+        $size = $request->input('size_name');
+    
         $img = $request->input('img');
-        $total=$price*$quantity;
-
+        $total = $price * $quantity;
+    
         if (isset($cart[$id])) {
             $cart[$id]['quantity'] += $quantity;
-            $cart[$id]['img'] = $img; // Thêm trường 'img' vào mảng $cart[$id]
+            $cart[$id]['img'] = $img; // Add the 'img' field to the $cart[$id] array
         } else {
             $cart[$id] = [
                 'id' => $id,
@@ -45,21 +45,64 @@ class CartController extends Controller
                 'quantity' => 1,
                 'img' => $img,
                 'total' => $total,
-                'color' => $color,
+                'colors' => $colors,
                 'size' => $size
-
             ];
         }
-
+    
         session()->put('cart', $cart);
-        // Tính lại số lượng sản phẩm trong giỏ hàng
+        // Recalculate the number of items in the cart
         $cartItemCount = count($cart);
-        // Trả về kết quả dưới dạng JSON
-        return response()->json([
-            'cartItemCount' => $cartItemCount,
-            'message' => 'Bạn đã thêm sản phẩm vào giỏ hàng thành công!'
-        ]);
+        // Return the result as JSON
+        return view('client.cart.cart', compact('Category', 'cart'));
+
+
     }
+
+    public function addToCart(Request $request)
+{
+    $quantity = 1;
+    // Thực hiện logic thêm vào giỏ hàng
+
+    // Ví dụ: Trả về số lượng sản phẩm trong giỏ hàng
+    $cartItemCount = 10;
+
+    $cart = session()->get('cart', []);
+
+    $id = $request->input('id');
+    $name = $request->input('name');
+    $price = $request->input('price');
+    $colors = $request->input('color');
+    $size = $request->input('size');
+
+    $img = $request->input('img');
+    $total = $price * $quantity;
+
+    if (isset($cart[$id])) {
+        $cart[$id]['quantity'] += $quantity;
+        $cart[$id]['img'] = $img; // Thêm trường 'img' vào mảng $cart[$id]
+    } else {
+        $cart[$id] = [
+            'id' => $id,
+            'name' => $name,
+            'price' => $price,
+            'quantity' => 1,
+            'img' => $img,
+            'total' => $total,
+            'colors' => $colors,
+            'size' => $size
+        ];
+    }
+
+    session()->put('cart', $cart);
+    // Tính lại số lượng sản phẩm trong giỏ hàng
+    $cartItemCount = count($cart);
+    // Trả về kết quả dưới dạng JSON
+    return response()->json([
+        'cartItemCount' => $cartItemCount,
+        'message' => 'Bạn đã thêm sản phẩm vào giỏ hàng thành công!'
+    ]);
+}
     public function updateQuantity(Request $request)
 {
     $id = $request->input('id');

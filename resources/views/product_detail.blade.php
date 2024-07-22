@@ -80,7 +80,7 @@
                         </ul>
                     </div>
                     <p class="quickview-para"></p>
-                    <form id="AddToCartForm" action="{{ route('addToCart')}}" method="post">
+                    <form id="AddToCartForm" action="{{ route('buyNow')}}" method="post">
                         @csrf
                         <div class="pro-details-size-color d-flex">
                             <div class="pro-details-color-wrap mx-3">
@@ -100,16 +100,17 @@
                                 </select>
                             </div>
                         </div>
+                        
                         <div class=" pro-details-quality">
                             <div class="cart-plus-minus">
                                 <input class="cart-plus-minus-box" required type="text" maxlength="1"
                                     onblur="validateInput(this);" name="p_quantity" value="1" />
                             </div>
                             <div class="pro-details-cart">
-                                <input type="hidden" name="id" value="">
-                                <input type="hidden" name="name" value="">
-                                <input type="hidden" name="img" value="">
-                                <input type="hidden" name="price" value="">
+                                <input type="hidden" name="id" value="{{$Product->id}}">
+                                <input type="hidden" name="name" value="{{$Product->name}}">
+                                <input type="hidden" name="img" value="{{$Product->img_thumb}}">
+                                <input type="hidden" name="price" value="{{$Product->price}}">
 
                                 <div class="addtocart-wrapper">
                                     <button class="btn btn-primary btn-hover-primary ml-4 mx-3" name="addtocart"

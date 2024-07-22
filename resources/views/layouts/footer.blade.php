@@ -281,10 +281,10 @@
     document.getElementById('selectedSize').value = selectedSize;
     }
     
-    function addToCart(event, productId, productName, productPrice, productImage) {
+    function addToCart(event, productId, productName, productPrice, productImage,color,size) {
       event.preventDefault(); // Prevent default form submission behavior
-      var color = document.getElementById('selectedColor').value;
-      var size = document.getElementById('selectedSize').value;
+      var color = document.getElementById('selectedColor').value ||'Đen';
+      var size = document.getElementById('selectedSize').value || 'M';
 
       $.ajax({
         type: 'POST',
@@ -365,24 +365,36 @@
     };
 });
 function showConfirmationDialog(event, button) {
-    event.preventDefault(); // Ngăn chặn điều hướng mặc định của thẻ a
+  event.preventDefault(); // Ngăn chặn điều hướng mặc định của thẻ a
 
-    const form = button.closest('.removeCartItemForm');
-    const id = form.querySelector('input[name="id"]').value;
-    
-    
-    Swal.fire({
-        title: 'Xác nhận',
-        text: 'Bạn có chắc chắn muốn xóa?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Có',
-        cancelButtonText: 'Không'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            form.submit(); // Gửi yêu cầu POST
+  const form = button.closest('form');
+  const id = button.getAttribute('data-id');
+  
+  Swal.fire({
+    title: 'Xác nhận',
+    text: 'Bạn có chắc chắn muốn xóa?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Có',
+    cancelButtonText: 'Không'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: 'POST',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: button.getAttribute('data-action'), // Sử dụng URL lấy từ thuộc tính data-action của nút
+        data: {
+          id: id
+        },
+        success: function (response) {
+          form.submit(); // Gửi yêu cầu POST để xóa sản phẩm
+        },
+        error: function (error) {
+          console.log(error);
         }
-    });
+      });
+    }
+  });
 }
   </script>
 </body>

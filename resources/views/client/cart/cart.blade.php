@@ -68,22 +68,12 @@
                                         href="">{{ $item['name'] }}</a></td>
                                 <td class="product-price-cart" data-price="{{ $item['price'] }}">{{ $item['price'] }}<span
                                         class="amount"></span></td>
-                                <td class="color">
-                                    {{-- <select class="form-control" id="selectedColor" name="color_name" onchange="setSelectedColor(this)" required> --}}
-                                        {{-- @foreach ($variants as $c) --}}
-                                        <option value="">{{ $item['color'] }}</option>
-                                        {{-- @endforeach --}}
-                                    {{-- </select> --}}
-                                </select>
-                                </td>
-                                <td class="size">
-                                    {{-- <select class="form-control" id="selectedSize" name="size_name" onchange="setSelectedSize(this)" required> --}}
-                                        {{-- @foreach ($variants as $s) --}}
-                                        <option value="">{{ $item['size'] }}</option>
-                                        {{-- @endforeach --}}
-                                    {{-- </select> --}}
-
-                                </td>
+                                        <td class="color">
+                                           {{$item['colors']}}
+                                        </td>
+                                        <td class="size">
+                                            {{$item['size']}}
+                                        </td>
                                 <td class="product-quantity">
                                     <div class="cart-plus-minus">
                                         {{-- <div class="dec qtybutton">-</div> --}}
@@ -93,10 +83,10 @@
                                 </td>
                                 <td class="product-subtotal" >{{ $item['total'] }}</td>
                                 <td class="product-remove">
-                                    <form action="{{ route('cart.removeCartItem') }}" method="POST" class="removeCartItemForm">
+                                    <form class="removeCartItemForm">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{ $item['id'] }}">
-                                        <button type="button" onclick="showConfirmationDialog(event, this)">
+                                        <button type="button" data-id="{{ $item['id'] }}" data-action="{{ route('cart.removeCartItem') }}"
+                                            onclick="showConfirmationDialog(event, this)">
                                             <i class="icon-close"></i>
                                         </button>
                                     </form>

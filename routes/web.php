@@ -27,6 +27,7 @@ Route::get('/shop/category/{iddm}', [HomeController::class, 'shopByCategory'])->
 
 Route::get('/cart', [CartController::class, 'index'])->name('client.cart');
 Route::post('/addToCart', [CartController::class, 'addToCart'])->name('addToCart');
+Route::post('/cart', [CartController::class, 'buyNow'])->name('buyNow');
 Route::post('/updateQuantity', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
 Route::post('/removeCartItem', [CartController::class, 'removeCartItem'])->name('cart.removeCartItem');
 Route::post('/removeCartOver', [CartController::class, 'removeCartOver'])->name('cart.removeCartOver');

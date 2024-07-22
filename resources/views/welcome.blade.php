@@ -122,7 +122,7 @@
                                             <button title="Add To Cart" type="submit" name="themcart"
                                                 class="addToCartButtonItem add-to-cart">Thêm vào giỏ hàng</button>
                                         </form> --}}
-<button class="addToCartButtonItem add-to-cart btnCart" data-id="{{$sp->id}}"  onclick="addToCart(event, {{$sp->id}}, '{{$sp->name}}', {{$sp->price}}, '{{ $sp->img_thumb }}')">Thêm vào giỏ hàng</button>                                        {{-- <button title="Add To Cart" type="submit" name="themcart"
+<button class="addToCartButtonItem add-to-cart btnCart" data-id="{{$sp->id}}"  onclick="addToCart(event, {{$sp->id}}, '{{$sp->name}}', {{$sp->price}}, '{{ $sp->img_thumb }}','Đen','M')">Thêm vào giỏ hàng</button>                                        {{-- <button title="Add To Cart" type="submit" name="themcart"
                                                 class="addToCartButtonItem add-to-cart">Thêm vào giỏ hàng</button> --}}
                                     </div>
                                     <div class="content">
