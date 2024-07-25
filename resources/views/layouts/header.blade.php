@@ -126,7 +126,7 @@
                                        
                                         <li><a class="dropdown-item" href="index.php?act=account">Tài khoản</a></li>
                                         <li><a class="dropdown-item" href="index.php?act=trangthaidon">Đơn mua</a></li>                            
-                                        <li><a class="dropdown-item" href="index.php?act=login">Đăng nhập / Đăng ký</a></li>
+                                        <li><a class="dropdown-item" href="{{route('login')}}">Đăng nhập / Đăng ký</a></li>
     
                                     </ul>
                                 </div>
