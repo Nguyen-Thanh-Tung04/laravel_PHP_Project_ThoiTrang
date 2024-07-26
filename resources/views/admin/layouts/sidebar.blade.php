@@ -35,6 +35,10 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span> Tài khoản
                 </span></a>
+          <a class="nav-link" href="{{route('admin.banners.index')}}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span> Banners
+                        </span></a>
 
     </li>
   

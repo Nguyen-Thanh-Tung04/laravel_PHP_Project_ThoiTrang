@@ -94,9 +94,11 @@
                                                         </div>
                                                     </div>
                                                 </label>
-                                                <input class="form-control d-none" value=""
+                                                <input type="file" alt="" name="img_thumb" class="form-control d-none">
+
+                                                {{-- <input class="form-control d-none" value=""
                                                        id="product-image-input" type="file" name="img_thumb"
-                                                       accept="image/png, image/gif, image/jpeg">
+                                                       accept="image/png, image/gif, image/jpeg"> --}}
                                             </div>
                                             <div class="avatar-lg">
                                                 <div class="avatar-title bg-light rounded">

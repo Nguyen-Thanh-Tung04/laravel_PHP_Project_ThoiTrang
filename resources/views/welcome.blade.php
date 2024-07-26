@@ -6,21 +6,15 @@
         <!-- Hero slider Active -->
         <div class="swiper-wrapper">
             <!-- Single slider item -->
+            @foreach ($Banner as $bn)
             <div class="hero-slide-item slider-height-2 swiper-slide d-flex">
                 <div class="hero-bg-image">
-                    <img src="{{asset('theme/client/assets/images/slider-image/slider-2-2.webp')}}" style="width: 100%;
+                    <img src="{{Storage::url($bn->img)}}" style="width: 100%;
         height: auto;" alt="">
                 </div>
                 
             </div>  
-            <!-- Single slider item -->
-            <div class="hero-slide-item slider-height-2 swiper-slide d-flex text-center">
-                <div class="hero-bg-image">
-                    <img src="{{asset('theme/client/assets/images/slider-image/slider-2-1.jpg')}}" style="width: 100%;
-        height: auto;"  alt="">
-                </div>
-                
-            </div>
+            @endforeach
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination swiper-pagination-white"></div>
