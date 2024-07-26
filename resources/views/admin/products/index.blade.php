@@ -80,7 +80,7 @@
                                         <form action="{{route('admin.products.destroy', $item)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Xóa</button>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

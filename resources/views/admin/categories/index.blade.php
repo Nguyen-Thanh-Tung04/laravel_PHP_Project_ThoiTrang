@@ -64,7 +64,7 @@
                                     <form action="{{route('admin.categories.destroy', $item)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger">Xóa</button>
+                                        <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')">Xóa</button>
                                     </form>
                                 </td>
                             </tr>
