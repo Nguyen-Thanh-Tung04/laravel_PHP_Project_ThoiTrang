@@ -36,7 +36,7 @@
                         <!-- Main product information -->
                         <a href="#collapseProductInfo" class="d-block card-header py-3" data-toggle="collapse"
                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                            <h6 class="m-0 font-weight-bold text-primary">Product main information</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Thông tin chính của sản phẩm</h6>
                         </a>
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseProductInfo">
@@ -52,7 +52,7 @@
                                            placeholder="Enter product title">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="product-title-input" class="form-label">Giá</label>
+                                    <label for="product-title-input" class="form-label">Giá sale</label>
                                     <input type="text" class="form-control" id="product-title-input" name="price_sale"
                                            placeholder="Enter product title">
                                 </div>
@@ -60,8 +60,8 @@
                                     <label class="form-label">Mô tả sản phẩm</label>
                                     <div id="ckeditor-classic" name="description">
                                         <ul>
-                                            <li>Full Sleeve</li>
-                                            <li>Cotton</li>
+                                            <li>Kích thước</li>
+                                            <li>Chất liệu</li>
                                             <li>All Sizes available</li>
                                             <li>4 Different Color</li>
                                         </ul>
@@ -75,14 +75,14 @@
                         <!-- Card Header - Accordion -->
                         <a href="#collapseProductGallery" class="d-block card-header py-3" data-toggle="collapse"
                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                            <h6 class="m-0 font-weight-bold text-primary">Product Image</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Hình ảnh sản phẩm</h6>
                         </a>
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseProductGallery">
                             <div class="card-body">
                                 <div class="mb-4">
-                                    <h5 class="fs-14 mb-1">Product Image</h5>
-                                    <p class="text-muted">Add Product main Image.</p>
+                                    <h5 class="fs-14 mb-1">Hình ảnh sản phẩm</h5>
+                                    <p class="text-muted">Thêm ảnh sản phẩm.</p>
                                     <div class="text-center">
                                         <div class="position-relative d-inline-block">
                                             <div class="position-absolute top-100 start-100 translate-middle">
