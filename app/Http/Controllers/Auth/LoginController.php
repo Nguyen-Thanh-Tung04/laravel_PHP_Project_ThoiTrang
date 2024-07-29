@@ -9,6 +9,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -20,11 +22,28 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // Validate dữ liệu từ request
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    // Thử đăng nhập người dùng
+    $credentials = $request->only('email', 'password');
+    if (Auth::attempt($credentials)) {
+        // Đăng nhập thành công, chuyển hướng đến trang mong muốn
+        return redirect()->route('home'); // Thay 'dashboard' bằng tên route mong muốn
+    }
+
+    // Đăng nhập không thành công, hiển thị thông báo lỗi
+    return back()->withErrors(['email' => 'Thông tin đăng nhập không chính xác']);
     }
 
     public function logout()
     {
-        // Xử lý logic logout
+        Auth::logout(); // Đăng xuất người dùng
+    
+        return redirect()->route('login'); 
     }
     public function vertify($token)
     {
