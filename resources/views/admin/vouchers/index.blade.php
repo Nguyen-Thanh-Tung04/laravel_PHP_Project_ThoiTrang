@@ -9,8 +9,10 @@
         <button class="btn btn-success">Tạo mới</button>
     </a>
     @if (session('message'))
-        <h3>{{session('message')}}</h3>
-    @endif
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+    </div>
+        @endif
     <div class="container-fluid">
 
         <!-- Page Heading -->

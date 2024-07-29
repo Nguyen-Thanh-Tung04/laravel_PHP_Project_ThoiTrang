@@ -9,8 +9,10 @@
         <button class="btn btn-success">Tạo mới</button>
     </a>
     @if (session('message'))
-        <h3>{{session('message')}}</h3>
-    @endif
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+    </div>
+        @endif
     <div class="container-fluid">
 
         <!-- Page Heading -->
@@ -61,7 +63,7 @@
                                     <a href="{{route('admin.categories.edit', $item)}}">
                                         <button class="btn btn-warning mx-2">Sửa</button>
                                     </a>
-                                    <form action="{{route('admin.categories.destroy', $item)}}" method="POST">
+                                    <form action="{{route('admin.categories.destroy', $item->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')">Xóa</button>

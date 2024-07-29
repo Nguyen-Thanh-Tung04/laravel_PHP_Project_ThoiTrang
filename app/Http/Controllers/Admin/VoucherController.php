@@ -62,7 +62,7 @@ class VoucherController extends Controller
     
     $Voucher->update($data);
 
-    return redirect()->route('admin.vouchers.index')->with('message', 'Thêm mới thành công');
+    return redirect()->route('admin.vouchers.index')->with('message', 'Cập nhật thành công');
     }
 
     /**
