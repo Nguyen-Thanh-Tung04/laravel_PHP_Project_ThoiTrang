@@ -24,7 +24,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Tạo mơí sản phẩm</h1>
+        <h1 class="h3 mb-4 text-gray-800">Tạo mới sản phẩm</h1>
         <!--  Page main content   -->
         <!--   Main product information             -->
         <form action="{{route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
@@ -60,10 +60,10 @@
                                     <label class="form-label">Mô tả sản phẩm</label>
                                     <div id="ckeditor-classic" name="description">
                                         <ul>
-                                            <li>Kích thước</li>
-                                            <li>Chất liệu</li>
-                                            <li>All Sizes available</li>
-                                            <li>4 Different Color</li>
+                                            <li>Kích thước: </li>
+                                            <li>Chất liệu : </li>
+                                            <li>Màu sắc   : </li>
+                                            <li>Thiết kế  : </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -85,21 +85,8 @@
                                     <p class="text-muted">Thêm ảnh sản phẩm.</p>
                                     <div class="text-center">
                                         <div class="position-relative d-inline-block">
-                                            <div class="position-absolute top-100 start-100 translate-middle">
-                                                <label for="product-image-input" class="mb-0" data-bs-toggle="tooltip"
-                                                       data-bs-placement="right" title="Select Image">
-                                                    <div class="avatar-xs">
-                                                        <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                            <i class="fa-solid fa-upload"></i>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                                <input type="file" alt="" name="img_thumb" class="form-control d-none">
+                                            <input type="file" alt="" name="img_thumb" class="form-control">
 
-                                                {{-- <input class="form-control d-none" value=""
-                                                       id="product-image-input" type="file" name="img_thumb"
-                                                       accept="image/png, image/gif, image/jpeg"> --}}
-                                            </div>
                                             <div class="avatar-lg">
                                                 <div class="avatar-title bg-light rounded">
                                                     <img src="" id="product-img" class="avatar-md h-auto"/>
@@ -109,8 +96,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h5 class="fs-14 mb-1">Product Gallery</h5>
-                                    <p class="text-muted">Add Product Gallery Images.</p>
+                                    <h5 class="fs-14 mb-1">Thư viện sản phẩm</h5>
+                                    <p class="text-muted">Thêm hình ảnh vào thư viện sản phẩm.</p>
                                     <input type="file" name="product_galleries[]" multiple class="form-control">
                                     {{--                            <div class="dropzone">--}}
                                     {{--                                <div class="fallback">--}}

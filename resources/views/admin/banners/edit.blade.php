@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+   <div class="container">
     <form action="{{route('admin.banners.update', $banner)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -33,4 +34,5 @@
         </div>
         <button type="submit" class="btn btn-success">Cập nhật</button>
     </form>
+   </div>
 @endsection

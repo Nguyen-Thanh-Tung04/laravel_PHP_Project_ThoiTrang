@@ -21,6 +21,11 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Danh sách sản phẩm</h1>
+        @if (session('message'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+    </div>
+        @endif
         <a href="{{route('admin.products.create')}}" class="btn btn-success mb-3">Tạo mới</a>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
