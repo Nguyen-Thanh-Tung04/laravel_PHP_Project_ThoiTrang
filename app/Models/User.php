@@ -46,7 +46,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function isAdmin () {
-        return $this->type === self::TYPE_ADMIN;
-    }
+    
 }
