@@ -1,4 +1,3 @@
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -48,7 +47,7 @@
     <!-- Main Style -->
     <link href="{{asset('theme/client/assets/css/style.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('theme/client/assets/css/css.css')}}" rel="stylesheet" type="text/css">
-    <style></style>
+   
 
 </head>
 
@@ -116,19 +115,12 @@
     
                                 <!-- Single Wedge Start -->
                                 <div class="header-bottom-set dropdown">
-                                    <button class="dropdown-toggle hcol-md-12 align-self-centereader-action-btn" data-bs-toggle="dropdown">
-    
-                                        {{-- @if(Auth::check())
-    @if(Auth::user()->avatar)
-        <img src="{{ asset(Auth::user()->avatar) }}" alt="Avatar" style="width: 50px; height: 50px; border-radius: 50%;">
-    @else
-        <i class="icon-user" style="color: rgb(211, 163, 19);"></i>
-    @endif
-@else
-    <i class="icon-user" style="color: rgb(211, 163, 19);"></i>
-@endif --}}
-                                        <i class="icon-user" style="color:rgb(211, 163, 19);"></i>
-    
+                                    <button class="dropdown-toggle hcol-md-12 align-self-center reader-action-btn" data-bs-toggle="dropdown">
+                                        @if(Auth::check())
+                                            <img style="height: 30px; width:30px" class="img-profile rounded-circle" src="{{asset('theme/admin/img/undraw_profile.svg')}}">
+                                        @else
+                                            <i class="icon-user" style="color:rgb(211, 163, 19);"></i>
+                                        @endif
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right">
     
@@ -144,12 +136,17 @@
                                 </div>
                                 <!-- Single Wedge End -->
     
-
+                                @if(Auth::check())
                                 <a href="{{route('client.cart')}}" class="header-action-btn header-action-btn-cart pr-0">
                                     <i class="icon-handbag" style="color:rgb(211, 163, 19)"></i>
                                     <span id="totalProduct" class="header-action-num"><?= count(session('cart', [])) ?></span>                                    {{-- <span class="header-action-num">0</span> --}}
-                                    <!-- <span class="cart-amount">€30.00</span> -->
-                                </a>
+                                </a>                              
+                                @else
+                                <a href="{{route('login')}}" class="header-action-btn header-action-btn-cart pr-0">
+                                    <i class="icon-handbag" style="color:rgb(211, 163, 19)"></i>
+                                    <span id="totalProduct" class="header-action-num"></span>                                    {{-- <span class="header-action-num">0</span> --}}
+                                </a>  
+                                @endif
                                 <a href="index.php?act=viewcart" class="header-action-btn header-action-btn-menu d-lg-none">
                                     <i class="icon-menu" style="color:rgb(211, 163, 19)"></i>
                                 </a>

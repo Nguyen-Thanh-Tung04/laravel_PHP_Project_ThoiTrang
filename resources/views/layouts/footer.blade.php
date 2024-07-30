@@ -396,6 +396,45 @@ function showConfirmationDialog(event, button) {
     }
   });
 }
+
+// Mã giảm giá 
+// JavaScript (ví dụ sử dụng jQuery)
+$('#discount-form').on('submit', function(event) {
+    event.preventDefault();
+
+    const formData = $(this).serialize();
+    const url = "{{ route('discount') }}";
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: formData,
+        success: function(response) {
+  if (response.success) {
+    // Hiển thị thông báo thành công
+    Swal.fire({
+      icon: 'success',
+      title: 'Thành công',
+      text: response.message
+    });
+
+    // Cập nhật tổng tiền (cập nhật theo discountAmount)
+    const newTotal = parseFloat($('#total').text()) - response.discountAmount;
+    $('#total').text(newTotal.toFixed(2)); 
+  } else {
+    // Hiển thị thông báo lỗi
+    Swal.fire({
+      icon: 'error',
+      title: 'Lỗi',
+      text: response.error
+    });
+  }
+}
+
+    });
+});
+
   </script>
 </body>
 

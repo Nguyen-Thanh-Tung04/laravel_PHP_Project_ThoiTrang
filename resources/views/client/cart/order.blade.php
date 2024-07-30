@@ -33,7 +33,7 @@
             //       foreach($list_order as $order){
             // extract($order);
             ?>
-            <form action="{{route('client.bill')}}" method="post">
+            <form action="{{route('client.bill')}}"  method="post">
                 @csrf
                 <div class="row">
                     <div class="col-lg-7">
@@ -44,7 +44,7 @@
                                 <div class="col-lg-12">
                                     <div class="billing-info mb-20px">
                                         <label>Tên</label>
-                                        <input type="text" name="name" id="" required value="">
+                                        <input type="text" name="name" id="" value="{{$user->name}}">
                                     </div>
                                 </div>
 
@@ -66,7 +66,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="billing-info mb-20px">
                                         <label>Email</label>
-                                        <input type="text" required value="" />
+                                        <input type="text" required value="{{$user->email}}" />
                                     </div>
                                 </div>
 
@@ -107,47 +107,27 @@
                                                 <span class="order-middle-left">{{ $item['name'] }}</span>
                                                  <span><img src="{{ Storage::url($item['img']) }}" alt="Product" style="height: 50px" /></span>
                                                  x{{ $item['quantity'] }}
-                                                <span class="order-price">{{ $item['price'] }}</span>
+                                                <span class="order-price">{{ $item['total'] }}</span>
                                             </li>
                                             @endforeach
 
                                         </ul>
                                     </div>
-                                    <div class="your-order-bottom">
-
-                                        <ul>
-                                            <li class="your-order-shipping">Phí ship</li>
-                                            <li><?php echo $phiship = number_format(20000, 0, ',', '.')  ?></li>
-                                        </ul>
+                                    <div class="col-lg-12 ">
+                                        <div class="discount-code">
+                                            <div class="input-group justify-content-end align-items-center">
+                                                <div class="ml-2"> -{{ $discount }}đ </div>
+                                                <img style="height: 40px; width:40px" class="img-profile rounded-circle" src="{{ asset('theme/client/assets/images/icons/vch.png') }}">
+                                            </div>
+                                        </div>
                                     </div>
                                     
 
                                     <div class="your-order-total">
-                                        <div class="sub-total">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-start">Tổng giá đơn :</td>
-                                                        <td class="text-end">
-                                                            
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-start">Phí ship :</td>
-                                                        <td class="text-end"></td>
-                                                    </tr>
-                                                    <!-- <tr>
-                                                        <td class="text-start">Mã giảm giá :</td>
-                                                        <td class="text-end"></td>
-                                                    </tr> -->
-
-                                                </tbody>
-                                            </table>
-                                        </div>
                                         <ul>
-                                           
                                             <li class="order-total">Tổng cộng</li>
-                                            <li></li>
+                                            {{-- <li class="order-total">{{ $item['total'] }}-MÃ giảm giá</li> --}}
+                                            <li> {{ $totalAll-$discount }}</li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-12">

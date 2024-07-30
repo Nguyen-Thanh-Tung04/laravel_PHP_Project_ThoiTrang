@@ -4,9 +4,8 @@
 <!-- breadcrumb-area start -->
 <div class="breadcrumb-area" style="height: 50px">
     <div class="container">
-        <div class="row">
             <div class="col-12">
-                <div class="row breadcrumb_box  align-items-center">
+                <div class="row breadcrumb_box  align-items-center ">
                     <div class="col-lg-6 col-md-6 col-sm-12 text-center text-md-start">
                         <h2 class="breadcrumb-title">Giỏ hàng</h2>
                     </div>
@@ -20,7 +19,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 
@@ -31,7 +29,18 @@
     
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">Giỏ hàng của bạn</h3>
+        <div class="row d-flex mb-4">
+            <h3 class="col-lg-8 col-md-6 mb-lm-30px cart-page-title">Giỏ hàng của bạn</h3>
+            <div class="discount-code">
+                <form id="discount-form">
+                    <div class="input-group">
+                        <input type="text" name="discount_code" class="form-control" placeholder="Nhập mã giảm giá để nhận ưu đãi">
+                        <button class="btn btn-dark" type="submit"><i class="fas fa-check"></i> Áp dụng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="#">
@@ -96,9 +105,13 @@
 
                         </tbody>
                     </table>
-
-
                     </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <h3>Tổng tiền: {{ $totalAll }}</h3>
+                        </div>
+                    </div>
+                   
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
