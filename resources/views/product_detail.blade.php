@@ -111,15 +111,23 @@
                                 <input type="hidden" name="name" value="{{$Product->name}}">
                                 <input type="hidden" name="img" value="{{$Product->img_thumb}}">
                                 <input type="hidden" name="price" value="{{$Product->price}}">
-
+                               
                                 <div class="addtocart-wrapper">
+                                    @if(Auth::check())
                                     <button class="btn btn-primary btn-hover-primary ml-4 mx-3" name="addtocart"
-                                        type="submit">Mua ngay</button>
-                                    <button id="addToCartButton" name="themcart" data-id="{{$Product->id}}"  onclick="addToCart(event, {{$Product->id}}, '{{$Product->name}}', {{$Product->price}}, '{{ $Product->img_thumb }}')"><i class="icon-handbag"></i>Thêm
-                                        vào
-                                        giỏ
-                                        hàng</button>
+                                    type="submit">Mua ngay</button>
+                                   <button id="addToCartButton" name="themcart" data-id="<?= $Product->id ?>" onclick="addToCart(event, <?= $Product->id ?>, '<?= $Product->name ?>', <?= $Product->price ?>, '<?= $Product->img_thumb ?>')">
+                                        <i class="icon-handbag"></i> Thêm vào giỏ hàng
+                                    </button>
+                                     @else
+                                     <a class="btn btn-primary btn-hover-primary ml-4 mx-3" href="{{ route('login') }}"  type="button">Mua ngay</a>
+                                     <button disabled>
+                                        <i class="icon-handbag"></i> Đăng nhập để thêm vào giỏ hàng
+                                    </button>
+                                    @endif    
+
                                 </div>
+                               
                             </div>
                     </form>
 
