@@ -50,6 +50,7 @@
                         <thead class="cart-table">
                             <tr>
                                 <th>STT</th>
+                                <th>Mã sp</th>
                                 <th>Ảnh</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Giá</th>
@@ -64,6 +65,7 @@
                             @foreach ($cart as $id => $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td> {{ $item['sku'] }}</td>
                                 <input type="hidden" value="" />
                                 <td class="product-thumbnail">
                                     @if(isset($item['img']))

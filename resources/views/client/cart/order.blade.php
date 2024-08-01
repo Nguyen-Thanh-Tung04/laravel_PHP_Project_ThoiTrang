@@ -35,6 +35,7 @@
             ?>
             <form action="{{route('client.bill')}}"  method="post">
                 @csrf
+                <input type="hidden" name="sku" value="{{strtoupper(\Str::random(8))}}">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="billing-info-wrap">
@@ -103,6 +104,11 @@
                                     <div class="your-order-middle">
                                         <ul>
                                             @foreach ($cart as $id => $item)
+                                            
+                                             <input type="hidden" name="product_id[]" value="{{ $item['id'] }}">
+                                             <input type="hidden" name="product_quantity[]" value="{{ $item['quantity'] }}">
+                                             <input type="hidden" name="product_price[]" value="{{ $item['price'] }}">
+                                             
                                             <li>
                                                 <span class="order-middle-left">{{ $item['name'] }}</span>
                                                  <span><img src="{{ Storage::url($item['img']) }}" alt="Product" style="height: 50px" /></span>
@@ -128,6 +134,8 @@
                                             <li class="order-total">Tổng cộng</li>
                                             {{-- <li class="order-total">{{ $item['total'] }}-MÃ giảm giá</li> --}}
                                             <li> {{ $totalAll-$discount }}</li>
+                                            <input type="hidden" name="total_price" value="{{ $totalAll - $discount }}">
+
                                         </ul>
                                     </div>
                                     <div class="col-lg-12">

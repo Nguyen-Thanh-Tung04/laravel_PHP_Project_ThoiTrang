@@ -47,7 +47,33 @@
     <!-- Main Style -->
     <link href="{{asset('theme/client/assets/css/style.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('theme/client/assets/css/css.css')}}" rel="stylesheet" type="text/css">
-   
+    <style>
+        .your-order {
+            display: flex;
+            justify-content: space-around;
+        }
+    
+        .kh, .don {
+            width: 100%; /* Đặt chiều rộng cho các phần tử */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    
+        @media (max-width: 768px) {
+            .your-order-area {
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            .kh, .don {
+                width: 100%; /* Hiển thị toàn bộ chiều rộng trên thiết bị nhỏ */
+                margin-bottom: 10px;
+            }
+        }
+
+        
+    </style>
 
 </head>
 

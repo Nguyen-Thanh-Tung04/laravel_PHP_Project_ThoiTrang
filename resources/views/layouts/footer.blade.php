@@ -281,7 +281,7 @@
     document.getElementById('selectedSize').value = selectedSize;
     }
     
-    function addToCart(event, productId, productName, productPrice, productImage,color,size) {
+    function addToCart(event, productId, productName, productPrice, productImage,sku,color,size) {
       event.preventDefault(); // Prevent default form submission behavior
       var color = document.getElementById('selectedColor').value ||'Đen';
       var size = document.getElementById('selectedSize').value || 'M';
@@ -295,6 +295,7 @@
           name: productName,
           price: productPrice,
           img: productImage,
+          sku: sku,
           color: color,
           size: size
         },
