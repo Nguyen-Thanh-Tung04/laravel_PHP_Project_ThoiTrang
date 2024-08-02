@@ -152,7 +152,7 @@
     
                                        
                                         <li><a class="dropdown-item" href="index.php?act=account">Tài khoản</a></li>
-                                        <li><a class="dropdown-item" href="index.php?act=trangthaidon">Đơn mua</a></li>                            
+                                        <li><a class="dropdown-item" href="{{ route('clients.orderhistry') }}">Đơn mua</a></li>                            
                                         @if(Auth::check())
                                         <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a></li>
                                          @else

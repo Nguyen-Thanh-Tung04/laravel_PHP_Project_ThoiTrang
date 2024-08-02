@@ -35,9 +35,12 @@ Route::post('/removeCartOver', [CartController::class, 'removeCartOver'])->name(
 Route::get('/order', [CartController::class, 'order'])->name('client.order');
 Route::post('/bill', [CartController::class, 'bill'])->name('client.bill');
 Route::get('/bills', [CartController::class, 'bills'])->name('clients.bill');
-
+Route::get('/orderhistry', [CartController::class, 'orderhistry'])->name('clients.orderhistry');
+Route::get('/histryDetail/{id}', [CartController::class, 'histryDetail'])->name('clients.histryDetail');
 // voucher
 Route::post('/discount', [CartController::class, 'discount'])->name('discount');
+Route::post('/updateOrder', [CartController::class, 'updateOrder'])->name('update.order');
+
 
 
 // Login 

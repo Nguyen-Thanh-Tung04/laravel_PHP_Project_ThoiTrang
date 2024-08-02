@@ -159,7 +159,7 @@
                             </div>
                             <div class="Place-order mt-25">
                                 <input type="text" hidden name="tongtien" value="">
-                                <input type="submit" class="btn-hover btn-order" name="dongydathang" value="Đặt hàng">
+                                <input type="submit" class="btn-hover btn-order" id="orderButton" name="dongydathang" value="Đặt hàng">
                             </div>
                         </div>
                     </div>

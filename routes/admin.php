@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\OrderController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,8 @@ Route::middleware('isAdmin')->prefix('admin')->as('admin.')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('banners', BannerController::class);
     Route::resource('vouchers', VoucherController::class);
+    Route::resource('orders', OrderController::class);
+
     Route::get('/login', [LoginController::class, 'index'])
         ->name('login');
     Route::post('auth/login', [LoginController::class, 'login'])

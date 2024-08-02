@@ -33,4 +33,8 @@ class Order extends Model
         'unpaid' => 'Chưa thanh toán'
     ];
     const UNPAID = 'unpaid';
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // Đảm bảo rằng 'user_id' là tên cột khóa ngoại trong bảng 'orders'
+    }
 }

@@ -436,6 +436,64 @@ $('#discount-form').on('submit', function(event) {
     });
 });
 
+// Thông báo đặt hàng thành công 
+$(document).ready(function(){
+    $('#orderButton').on('click', function(e){
+        // Hiển thị thông báo đặt hàng thành công
+        Swal.fire({
+            title: 'Thông báo',
+            text: 'Đặt hàng thành công !',
+            icon: 'success',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 6000,
+            showCloseButton: true,
+        });
+    });
+});
+
+$(document).ready(function() {
+    $('.cancel-order-btn').click(function() {
+        var form = $('#cancelOrderForm');
+        var formData = form.serialize();
+
+        $.ajax({
+    url: form.attr('action'),
+    type: form.attr('method'),
+    data: formData,
+    success: function(response) {
+        // Xử lý thành công, cập nhật giao diện
+        console.log(response.message);
+        // Ví dụ: cập nhật trạng thái đơn hàng trên giao diện
+        $('#order-status-' + response.orderId).text('Cancelled');
+        window.location.href = window.location.href;
+        
+        // Sửa đoạn mã để hiển thị thông báo SweetAlert2
+        Swal.fire({
+            title: 'Thông báo',
+            text: 'Đặt hàng thành công !',
+            icon: 'success',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 6000,
+            showCloseButton: true
+        });
+    },
+    error: function(xhr, status, error) {
+        console.log('Error:', error);
+        // Xử lý khi có lỗi xảy ra trong quá trình gửi AJAX
+        Swal.fire({
+            title: 'Lỗi',
+            text: 'Đã xảy ra lỗi khi xử lý yêu cầu. Vui lòng thử lại sau.',
+            icon: 'error'
+        });
+    }
+});
+    });
+});
+
   </script>
 </body>
 

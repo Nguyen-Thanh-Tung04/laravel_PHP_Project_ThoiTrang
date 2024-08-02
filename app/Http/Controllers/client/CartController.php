@@ -254,16 +254,71 @@ class CartController extends Controller
         return redirect()->route('clients.bill', ['order_id' => $order->id])->with('success', 'Đặt hàng thành công !');
     }
     public function bills(Request $request)
-{
-    $Category = Category::all();
-    
-    // Lấy ID đơn hàng từ request
-    $orderId = $request->input('order_id');
-    
-    // Lấy thông tin đơn hàng dựa trên ID
-    $order = Order::find($orderId);
-    $orderItems = orderItems::query()->where('order_id', $orderId)->get();
+    {
+        $Category = Category::all();
 
-    return view('client.cart.bill', compact('Category', 'order', 'orderItems'));
-}
+        // Lấy ID đơn hàng từ request
+        $orderId = $request->input('order_id');
+
+        // Lấy thông tin đơn hàng dựa trên ID
+        $order = Order::find($orderId);
+        $orderItems = orderItems::query()->where('order_id', $orderId)->get();
+
+        return view('client.cart.bill', compact('Category', 'order', 'orderItems'));
+    }
+    public function orderhistry(Request $request)
+    {
+        $Category = Category::all();
+        // Lấy ID của người dùng đang đăng nhập
+        $user_id = Auth::id();
+
+        // Truy vấn các đơn hàng của người dùng đó
+        $data = Order::with('user')
+            ->where('user_id', $user_id)
+            ->latest('id')
+            ->get();
+        $ORDER_STATUS = [
+            'pending' => 'Chờ xác nhận',
+            'confirmed' => 'Đã xác nhận',
+            'preparing' => 'Đang chuẩn bị hàng',
+            'shipping' => 'Đang giao',
+            'delivered' => 'Đã giao',
+            'cancel' => 'Hủy'
+        ];
+
+        return view('client.cart.orderhistory', compact('Category', 'data', 'ORDER_STATUS'));
+    }
+    public function histryDetail(Request $request, string $id)
+    {
+        $Category = Category::all();
+        $data = orderItems::query()->where('order_id', $id)->get();
+        // dd($data);
+        $ORDER_STATUS = [
+            'pending' => 'Chờ xác nhận',
+            'confirmed' => 'Đã xác nhận',
+            'preparing' => 'Đang chuẩn bị hàng',
+            'shipping' => 'Đang giao',
+            'delivered' => 'Đã giao',
+            'cancel' => 'Hủy'
+        ];
+        $order = Order::find($id);
+
+
+        return view('client.cart.historyDetail', compact('order', 'Category', 'data', 'ORDER_STATUS'));
+    }
+    public function updateOrder(Request $request)
+    {
+        $orderId = $request->input('orderId');
+        $newStatus = $request->input('newStatus');
+
+        $order = Order::findOrFail($orderId); // Tìm đơn hàng
+
+        if ($newStatus === 'cancel') {
+            $order->order_status = 'cancel';
+            $order->save(); // Lưu thay đổi
+            return response()->json(['message' => 'Order status updated to Cancelled successfully']);
+        } else {
+            return response()->json(['message' => 'Invalid status update request']);
+        }
+    }
 }
