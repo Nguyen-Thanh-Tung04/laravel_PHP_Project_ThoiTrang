@@ -72,7 +72,7 @@
                     <div class="pricing-meta">
                         <ul>
                             <li class="old-price not-cut">
-                                {{$Product->price}}
+                                {{ number_format($Product->price, 0, ',', '.')}} đ
                                 <del class="px-3 text-secondary
 
 "><small></small></del>
