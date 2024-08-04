@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\AccountController;
+
 
 
 
@@ -31,6 +33,11 @@ Route::middleware('isAdmin')->prefix('admin')->as('admin.')->group(function () {
     Route::resource('banners', BannerController::class);
     Route::resource('vouchers', VoucherController::class);
     Route::resource('orders', OrderController::class);
+    Route::resource('accounts', AccountController::class);
+
+    // hóa đơn
+    Route::get('/print/{id}/pdf-invoice', [OrderController::class, 'invoice'])->name('print');
+    
 
     Route::get('/login', [LoginController::class, 'index'])
         ->name('login');

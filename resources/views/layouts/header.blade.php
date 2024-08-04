@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Furns </title>
+    <title>Ùn😎 </title>
     <meta name="csrf-token" content="{{ csrf_token() }}"> 
     <meta name="description"
         content="240+ Best Bootstrap Templates are available on this website. Find your template for your project compatible with the most popular HTML library in the world." />
