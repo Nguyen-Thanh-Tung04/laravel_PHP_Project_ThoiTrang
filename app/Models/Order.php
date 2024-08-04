@@ -37,4 +37,8 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'user_id'); // Đảm bảo rằng 'user_id' là tên cột khóa ngoại trong bảng 'orders'
     }
+    public function orderItems()
+    {
+        return $this->hasMany(orderItems::class, 'order_id');
+    }
 }

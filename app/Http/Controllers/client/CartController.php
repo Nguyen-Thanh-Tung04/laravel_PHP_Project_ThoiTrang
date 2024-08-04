@@ -9,7 +9,11 @@ use App\Models\Order;
 use App\Models\orderItems;
 use App\Models\voucher;
 use Illuminate\Support\Facades\Auth;
-
+use App\Events\OrderPlaced;
+use App\Mail\OrderEmail;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class CartController extends Controller
 {
@@ -249,6 +253,10 @@ class CartController extends Controller
             $orderItem->product_variant_id = 1;
             $orderItem->save();
         }
+        // Kích hoạt Event
+        $token = Hash::make($user->email);
+        Mail::to($user->email)->send(new OrderEmail($token, $user->name));
+        
         session()->forget('cart');
         session()->forget('totalAll');
         return redirect()->route('clients.bill', ['order_id' => $order->id])->with('success', 'Đặt hàng thành công !');

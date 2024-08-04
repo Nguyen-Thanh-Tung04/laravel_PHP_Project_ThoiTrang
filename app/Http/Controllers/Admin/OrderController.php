@@ -8,9 +8,18 @@ use App\Models\Order;
 use App\Models\orderItems;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\File;
+
 
 class OrderController extends Controller
 {
+    public function invoice($id)
+    {
+        $order = Order::with('orderItems')->findOrFail($id);
+        return view('admin.orders.show', compact('order'));
+    }
+  
     const PATH_VIEW = 'admin.orders.';
     const PATH_UPLOAD = 'orders';
     public function index()
@@ -97,4 +106,5 @@ class OrderController extends Controller
     {
         //
     }
+       
 }

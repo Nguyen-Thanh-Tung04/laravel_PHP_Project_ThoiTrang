@@ -83,5 +83,8 @@
         </div>
     </div>
 </div>
+<div class="row d-flex justify-content-end">
+    <button onclick="window.print()" class="btn btn-primary" style="width:200px; margin-right: 50px;">In Hóa Đơn</button>
+</div>
    
 @endsection
