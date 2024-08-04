@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Mail\OrderEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,4 +20,8 @@ class orderItems extends Model
         'variant_color_name',
         'quantity'
     ];
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id');
+    }
 }
