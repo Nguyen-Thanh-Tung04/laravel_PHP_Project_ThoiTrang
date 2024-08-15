@@ -11,23 +11,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ProductVariant::class)->constrained();
-            $table->foreignIdFor(Order::class)->constrained();
+            $table->foreignId('product_variant_id')->constrained();
+            $table->foreignId('order_id')->constrained();
 
-            // Sao lưu thông tin sản phẩm và biến thể sản phaarm
+            // Thêm các trường thông tin sản phẩm và biến thể sản phẩm
             $table->string('product_name');
             $table->string('product_sku');
             $table->string('product_img_thumb');
-            $table->string('product_price');
-            $table->string('product_price_sale');
+            $table->decimal('product_price', 15, 2); // Sử dụng decimal thay cho string cho giá tiền
 
             $table->string('variant_size_name');
             $table->string('variant_color_name');
-            $table->string('quantity');
+            $table->integer('quantity'); // Sử dụng integer cho số lượng sản phẩm
             $table->timestamps();
         });
     }
@@ -35,8 +34,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('orders_items');
+        Schema::dropIfExists('order_items');
     }
 };
