@@ -9,7 +9,7 @@
             <hr class="my-4">
         </div>
     </div>
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-lg-4 col-md-12 col-sm-12 col-12">
                 <div class="your-order-4">
@@ -91,7 +91,7 @@
         </div>
             
         </div>
-    </div>
+    </div> --}}
     
 </div>
 

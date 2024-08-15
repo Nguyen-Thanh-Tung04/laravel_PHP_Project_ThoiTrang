@@ -256,13 +256,49 @@ class CartController extends Controller
         // Kích hoạt Event
         $token = Hash::make($user->email);
         Mail::to($user->email)->send(new OrderEmail($token, $user->name));
-        
+
         session()->forget('cart');
         session()->forget('totalAll');
         return redirect()->route('clients.bill', ['order_id' => $order->id])->with('success', 'Đặt hàng thành công !');
     }
     public function bills(Request $request)
     {
+        $user = Auth::user();
+
+        $cart = session('cart', []);
+        $order = session('order', []);
+        // dd(count($order));
+
+        $newOrder = new Order();
+        $newOrder->sku = $order['sku'];
+        $newOrder->user_id = $user->id;
+        $newOrder->receiver_name = $order['name'];
+        $newOrder->receiver_phone = $order['phone'];
+        $newOrder->receiver_address = $order['address'];
+        $newOrder->total_price = $order['total_price'];
+        $newOrder->payment_method = $order['payment_method'];
+        $newOrder->payment_status = 'unpaid';
+        $newOrder->order_status = 'pending';
+        $newOrder->save();
+
+        // dd($newOrder);
+        foreach ($cart as $key => $item) {
+            $orderItem = new orderItems(); // Chữ "orderItems" sửa thành "OrderItem" (chữ "I" in hoa)
+            $orderItem->order_id = $newOrder->id;
+            $orderItem->product_name = $item['name'];
+            $orderItem->product_price = $item['price'];
+            $orderItem->quantity = $item['quantity'];
+            $orderItem->product_img_thumb = $item['img'];
+            $orderItem->variant_color_name = $item['colors'];
+            $orderItem->variant_size_name = $item['size'];
+            $orderItem->product_sku = $item['sku'];
+            $orderItem->product_variant_id = 1;
+            $orderItem->save();
+        }
+
+        session()->forget('cart');
+        session()->forget('totalAll');
+
         $Category = Category::all();
 
         // Lấy ID đơn hàng từ request

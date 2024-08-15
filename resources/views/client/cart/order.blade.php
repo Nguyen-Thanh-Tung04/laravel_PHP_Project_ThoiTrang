@@ -29,11 +29,7 @@
     <!-- checkout area start -->
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
-            <?php
-            //       foreach($list_order as $order){
-            // extract($order);
-            ?>
-            <form action="{{route('client.bill')}}"  method="post">
+            <form action="{{route('client.place')}}"  method="post">
                 @csrf
                 <input type="hidden" name="sku" value="{{strtoupper(\Str::random(8))}}">
                 <div class="row">
@@ -141,17 +137,13 @@
                                     <div class="col-lg-12">
                                         <h5 class="boxtitle">PHƯƠNG THỨC THANH TOÁN</h5>
                                         <div class="form-check">
-                                            <input class="form-check-input p-0 btn-rounded" type="radio" value="cash"
-                                                name="payment_method" id="payment1" checked>
-                                            <label class="form-check-label" for="payment1">Trả tiền khi nhận
-                                                hàng</label>
+                                            <input class="form-check-input p-0 btn-rounded" type="radio" value="cash" name="payment_method" id="payment1" checked>
+                                            <label class="form-check-label" for="payment1">Trả tiền khi nhận hàng</label>
                                         </div>
-
+                                        
                                         <div class="form-check">
-                                            <input class="form-check-input p-0 btn-rounded" type="radio"
-                                                name="payment_method" value="momo_atm" id="payment3">
-                                            <label class="form-check-label" for="payment3">Thanh toán qua momo
-                                                atm</label>
+                                            <input class="form-check-input p-0 btn-rounded" type="radio" name="payment_method" value="vnpay" id="payment3">
+                                            <label class="form-check-label" for="payment3">Thanh toán qua Vnpay ATM</label>
                                         </div>
                                     </div>
                                 </div>

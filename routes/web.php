@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\client\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\PaymentController;
+
 
 
 /*
@@ -33,6 +35,8 @@ Route::post('/updateQuantity', [CartController::class, 'updateQuantity'])->name(
 Route::post('/removeCartItem', [CartController::class, 'removeCartItem'])->name('cart.removeCartItem');
 Route::post('/removeCartOver', [CartController::class, 'removeCartOver'])->name('cart.removeCartOver');
 Route::get('/order', [CartController::class, 'order'])->name('client.order');
+Route::post('/place', [PaymentController::class, 'place'])->name('client.place');
+
 Route::post('/bill', [CartController::class, 'bill'])->name('client.bill');
 Route::get('/bills', [CartController::class, 'bills'])->name('clients.bill');
 Route::get('/orderhistry', [CartController::class, 'orderhistry'])->name('clients.orderhistry');
@@ -41,6 +45,8 @@ Route::get('/histryDetail/{id}', [CartController::class, 'histryDetail'])->name(
 Route::post('/discount', [CartController::class, 'discount'])->name('discount');
 Route::post('/updateOrder', [CartController::class, 'updateOrder'])->name('update.order');
 
+// Thanh toán
+Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay_payment');
 
 
 // Login 
