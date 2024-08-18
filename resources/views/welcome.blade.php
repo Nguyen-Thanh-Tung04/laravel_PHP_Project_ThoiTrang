@@ -1,6 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
+<div id="loader">
+    <div class="circle">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+    </div>
+</div>
 <div class="section ">
     <div class="hero-slider h-75 swiper-container slider-nav-style-1 slider-dot-style-1 dot-color-white">
         <!-- Hero slider Active -->
